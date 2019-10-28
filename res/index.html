@@ -1,0 +1,54 @@
+
+
+<html>
+<head>
+	
+	<script type="text/javascript" src="../js/raphael-min.js"></script>
+	<script type="text/javascript" src="../js/dracula_graffle.js"></script>
+	<script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../js/dracula_graph.js"></script>
+	<script type="text/javascript" src="../js/dracula_algorithms.js"></script>
+	<script src="presup-graph.js" type="text/javascript"></script>
+	<script type="text/javascript" src="presup_classes.js"></script>
+	<script type="text/javascript" src="recip_patterns.js"></script>
+	<script type="text/javascript" src="vp_frequencies.js"></script>
+	<script type="text/javascript" src="wordnet_verb_maps.js"></script>
+	<link type="text/css" href="style.css" rel="stylesheet" />
+</head>
+<body>
+<div id="ctrl-div">
+		<span>Entity 1: </span>
+		<!--<input id="e1" type="text" value="" name="e1" />-->
+		<select id="e1">
+			<option value="default">(default)</option>
+			<option value="i/me">I</option>
+			<option value="you">You</option>
+			<option value="we/us">We</option>
+			<option value="he/him">He</option>
+			<option value="she/her">She</option>
+			<option value="they/them">They</option>
+		</select>
+		<span>Entity 2: </span>
+		<!--<input id="e2" type="text" value="" name="e2" />-->
+		<select id="e2">
+			<option value="default">(default)</option>
+			<option value="i/me">I</option>
+			<option value="you">You</option>
+			<option value="we/us">We</option>
+			<option value="he/him">He</option>
+			<option value="she/her">She</option>
+			<option value="they/them">They</option>
+		</select>
+		<!--<br/>-->
+		<span>VP1: </span>
+		<input id="vp1" type="text" value="" name="vp1" />
+		<span>VP2: </span>
+		<input id="vp2" type="text" value="" name="vp2" />
+		<span># of recip output VPs</span>
+		<input id="numOutputVPs" type="text" value="" name="numOutputVPs" />
+		
+		<button id="process-button" name="process-button" onclick="">submit VPs</button>
+</div>
+<div id="canvas"></div>
+</body>
+</html>
