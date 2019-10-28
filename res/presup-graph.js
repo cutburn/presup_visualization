@@ -12,27 +12,25 @@ var pronouns = ['i','me','you','we','us','he','him','she','her','they','them'];
 // filter function - filters elts. out of recip_patterns with matching vp1 & vp2
 function filterRPVP1VP2(element, index, array)
 {
-  //alert(array);
-  if (document.getElementById('e1').value == 'default' && document.getElementById('e2').value == 'default')
+  if(document.getElementById('e1').value == 'default' && document.getElementById('e2').value == 'default')
   {
     return array[index][0] == vp1 && array[index][1] == vp2;
   }
-  if (document.getElementById('e1').value == 'default')
+  if(document.getElementById('e1').value == 'default')
   {
     
   }
-  if (document.getElementById('e2').value == 'default')
+  if(document.getElementById('e2').value == 'default')
   {
     
   }
   return false;
-  
 }
 
 // filter function - filters elts. out of recip_patterns with matching vp1 only
 function filterRPVP1(element, index, array)
 {
-  if (document.getElementById('e1').value == 'default' && document.getElementById('e2').value == 'default')
+  if(document.getElementById('e1').value == 'default' && document.getElementById('e2').value == 'default')
   {
     return array[index][0] == vp1;
   }
@@ -44,22 +42,22 @@ function filterRPVP1(element, index, array)
     var pronSet2 = document.getElementById('e2').value.split('/');
     var phrase = element[2].split('_');
     var pronSet = Array();
-    for (var i = 0; i < phrase.length; i++)
+    for(var i = 0; i < phrase.length; i++)
     {
-      if ($.inArray(phrase[i],pronouns) != -1)
+      if($.inArray(phrase[i],pronouns) != -1)
       {
         pronSet.push(phrase[i]);
       }
-      if (pronSet.length == 2)
+      if(pronSet.length == 2)
       {
         break;
       }
     }
-    if (document.getElementById('e1').value == 'default')
+    if(document.getElementById('e1').value == 'default')
     {
       return array[index][0] == vp1 && $.inArray(pronSet[1],pronSet2) != -1;
     }
-    else if (document.getElementById('e2').value == 'default')
+    else if(document.getElementById('e2').value == 'default')
     {
       return array[index][0] == vp1 && $.inArray(pronSet[0],pronSet1) != -1;
     }
@@ -81,7 +79,7 @@ function filterRPVP2(element, index, array)
 
 function filterPCVP1(element, index, array)
 {
-  if (document.getElementById('e1').value == 'default' && document.getElementById('e2').value == 'default')
+  if(document.getElementById('e1').value == 'default' && document.getElementById('e2').value == 'default')
   {
     return array[index][0] == vp1;
   }
@@ -98,7 +96,7 @@ function filterPCVP2(element, index, array)
 function addPresupClassEdges()
 {
   edgeLabels = computePresupClasses();
-  for (i in g.nodes)
+  for(i in g.nodes)
   {
     removeNode(i.id);
   }
@@ -122,22 +120,22 @@ function computePresupClasses()
   var vp2Classes = Array();
   
   vp1ClassSets = presup_classes.filter(filterPCVP1).map(function(elt){return elt[1]});
-  for (i=0; i < vp1ClassSets.length;i++)
+  for(i=0; i < vp1ClassSets.length;i++)
   {
-    for (j=0; j<vp1ClassSets[i].length; j++)
+    for(j=0; j<vp1ClassSets[i].length; j++)
     {
-      if (!contains(vp1Classes,vp1ClassSets[i][j]))
+      if(!contains(vp1Classes,vp1ClassSets[i][j]))
       {
         vp1Classes.push(vp1ClassSets[i][j]);
       }
     }
   }
   vp2ClassSets = presup_classes.filter(filterPCVP2).map(function(elt){return elt[1]});
-  for (i=0; i < vp1ClassSets.length;i++)
+  for(i=0; i < vp1ClassSets.length;i++)
   {
-    for (j=0; j<vp2ClassSets[i].length; j++)
+    for(j=0; j<vp2ClassSets[i].length; j++)
     {
-      if (!contains(vp2Classes,vp2ClassSets[i][j]))
+      if(!contains(vp2Classes,vp2ClassSets[i][j]))
       {
         vp2Classes.push(vp2ClassSets[i][j]);
       }
@@ -149,21 +147,21 @@ function computePresupClasses()
   // compute classes for verb pair
   retVal = Array();
   
-  if (contains(vp1Classes,'positive'))
+  if(contains(vp1Classes,'positive'))
   {
-    if (contains(vp2Classes,'gg'))
+    if(contains(vp2Classes,'gg'))
     {
       retVal.push('positive');
       retVal.push('gg');
       return retVal;
     }
-    else if (contains(vp2Classes,'bg'))
+    else if(contains(vp2Classes,'bg'))
     {
       retVal.push('positive');
       retVal.push('bg');
       return retVal;
     }
-    else if (contains(vp2Classes,'ng'))
+    else if(contains(vp2Classes,'ng'))
     {
       retVal.push('positive');
       retVal.push('ng');
@@ -176,21 +174,21 @@ function computePresupClasses()
       return retVal;
     }
   }
-  else if (contains(vp1Classes,'negative'))
+  else if(contains(vp1Classes,'negative'))
   {
-    if (contains(vp2Classes,'gb'))
+    if(contains(vp2Classes,'gb'))
     {
       retVal.push('negative');
       retVal.push('gb');
       return retVal;
     }
-    else if (contains(vp2Classes,'bb'))
+    else if(contains(vp2Classes,'bb'))
     {
       retVal.push('negative');
       retVal.push('bb');
       return retVal;
     }
-    else if (contains(vp2Classes,'nb'))
+    else if(contains(vp2Classes,'nb'))
     {
       retVal.push('negative');
       retVal.push('nb');
@@ -203,21 +201,21 @@ function computePresupClasses()
       return retVal;
     }
   }
-  else if (contains(vp1Classes, 'neutral'))
+  else if(contains(vp1Classes, 'neutral'))
   {
-    if (contains(vp2Classes,'gn'))
+    if(contains(vp2Classes,'gn'))
     {
       retVal.push('neutral');
       retVal.push('gn');
       return retVal;
     }
-    else if (contains(vp2Classes,'bn'))
+    else if(contains(vp2Classes,'bn'))
     {
       retVal.push('neutral');
       retVal.push('bn');
       return retVal;
     }
-    else if (contains(vp2Classes,'nn'))
+    else if(contains(vp2Classes,'nn'))
     {
       retVal.push('neutral');
       retVal.push('nn');
@@ -225,7 +223,7 @@ function computePresupClasses()
     }
     else
     {
-      if (retVal.length == 0)
+      if(retVal.length == 0)
       {
         retVal.push('?');
         retVal.push('?');
@@ -240,37 +238,31 @@ function computePresupClasses()
     return retVal;
   }
   // include other clauses before "else" (i.e. for neutral, reciprocal, etc.)
-  
-  
 }
-
 
 // borrowed from: http://www.jamesrutherford.com/blog/2010/08/07/javascript-associative-array-sort/
 // something wrong with this function?
 function sort_couplets( coupletA, coupletB ) {
 
-  return coupletA[ 'value' ] > coupletB[ 'value' ];
+  return coupletA['value'] > coupletB['value'];
 }
 
 function computeRecipPatterns()
 {
   var vp1VPs = recip_patterns.filter(filterRPVP1).map(function(elt){return elt[1]});
   var newVPs = [];
-  for (var i = 0; i < vp1VPs.length; i++)
+  for(var i = 0; i < vp1VPs.length; i++)
   {
-    if (vp_to_root_map[vp1VPs[i]] != undefined)
+    if(vp_to_root_map[vp1VPs[i]] != undefined)
     {
       newVPs.push(vp_to_root_map[vp1VPs[i]]);
     }
   }
   
-  
-  
-  
   var vpMultiset = new Array();
-  for (i in vp1VPs)
+  for(i in vp1VPs)
   {
-    if (vpMultiset[vp1VPs[i]] != undefined)
+    if(vpMultiset[vp1VPs[i]] != undefined)
     {
       vpMultiset[vp1VPs[i]] += 1;
     }
@@ -280,21 +272,16 @@ function computeRecipPatterns()
     }
   }
   
-  
-  
-  
   var vpCouplets = new Array();
-  for( key in vpMultiset ) {
-
+  for(key in vpMultiset)
+  {
     vpCouplets.push({
-
       key: key,
-      value: vpMultiset[ key ]
+      value: vpMultiset[key]
     });
   }
   
-  
-  vpCouplets.sort( sort_couplets );
+  vpCouplets.sort(sort_couplets);
   vpCouplets.reverse();
   
   var numOutputVPs = document.getElementById('numOutputVPs').value;
@@ -302,9 +289,9 @@ function computeRecipPatterns()
   var vpNodes = new Array();
   var staticOrder = new Array();
   
-  if (numOutputVPs == 0)
+  if(numOutputVPs == 0)
   {
-    for (vpCount  = 0; vpCount < vpCouplets.length; vpCount++)
+    for(vpCount = 0; vpCount < vpCouplets.length; vpCount++)
     {
       staticOrder.push(['(VP2) ' + vpCouplets[vpCount]['key'],1,vpCount]);
       g.addEdge(e2,'(VP2) ' + vpCouplets[vpCount]['key'],{label:'frequency: ' + vpCouplets[vpCount]['value']});
@@ -313,7 +300,7 @@ function computeRecipPatterns()
   }
   else
   {
-    for (vpCount  = 0; vpCount < vpCouplets.length && vpCount < numOutputVPs; vpCount++)
+    for(vpCount = 0; vpCount < vpCouplets.length && vpCount < numOutputVPs; vpCount++)
     {
       staticOrder.push(['(VP2) ' + vpCouplets[vpCount]['key'],1,vpCount]);
       g.addEdge(e2,'(VP2) ' + vpCouplets[vpCount]['key'],{label:'frequency: ' + vpCouplets[vpCount]['value']});
@@ -328,23 +315,22 @@ function computeRecipPatterns()
   staticOrder.push([e2,3,vpCount/2]);
   g.addEdge(e1,'(VP1) ' + vp1);
   
-  
   return staticOrder;
-  
 }
 
 function addRecipPatternEdges()
 {
   var map = computeRecipPatterns();
-  
-  
   layouter = new Graph.Layout.Static(g,map);
 }
 
 // checks membership of an object obj in an array a
-function contains(a, obj){
-  for(var i = 0; i < a.length; i++) {
-    if(a[i] === obj){
+function contains(a, obj)
+{
+  for(var i = 0; i < a.length; i++)
+  {
+    if(a[i] === obj)
+    {
       return true;
     }
   }
@@ -354,15 +340,14 @@ function contains(a, obj){
 
 function updateEdges()
 {
-  if (vp1 != "" && vp2 != "")
+  if(vp1 != "" && vp2 != "")
   {
     addPresupClassEdges();
   }
-  else if (vp1 != "")  // symmetric case yet to be implemented
+  else if(vp1 != "")  // symmetric case yet to be implemented
   {
     addRecipPatternEdges();
   }
-  
 }
 
 $(document).ready(function() {
@@ -377,7 +362,6 @@ $(document).ready(function() {
   g.addEdge(e2,vp2+' (VP2)',{label:'?'});
   g.addEdge(vp2+' (VP2)',e1,{label:'?'});
   
-  
   layouter = new Graph.Layout.Static(g,[[e1,0,1],[e2,2,1],[vp1+' (VP1)',1,0],[vp2+' (VP2)',1,2]]);
   
   function updateGraph()
@@ -390,47 +374,23 @@ $(document).ready(function() {
     
     $("div#canvas").empty();
     renderer = new Graph.Renderer.Raphael('canvas', g, $(window).width() - 50, $(window).height() - 150);
-    
   };
-
+  
   $(window).resize(function() {
       updateGraph();
   });
   
-  $('#e1').keyup(function(e) {
-    if(e.keyCode == 13)
-    {
-      updateGraph();
-    }
-  });
-  
-  $('#e2').keyup(function(e) {
-    if(e.keyCode == 13)
-    {
-      updateGraph();
-    }
-  });
-  
-  $('#vp1').keyup(function(e) {
-    if(e.keyCode == 13)
-    {
-      updateGraph();
-    }
-  });
-  
-  $('#vp2').keyup(function(e) {
-    if(e.keyCode == 13)
-    {
-      updateGraph();
-    }
-  });
-  
-  $('#numOutputVPs').keyup(function(e) {
-    if(e.keyCode == 13)
-    {
-      updateGraph();
-    }
-  });
+  var returnKeyCode = 13;
+  var keyUpSelectors = ["#e1", "#e2", "#vp1", "#vp2", "#numOutputVPs"];
+  for(var i = 0; i < keyUpSelectors.length; i++)
+  {
+    $(keyUpSelectors[i]).keyup(function(e) {
+      if(e.keyCode == returnKeyCode)
+      {
+        updateGraph();
+      }
+    });
+  }
   
   $('#process-button').click(function(event) {
     updateGraph();
