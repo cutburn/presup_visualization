@@ -366,15 +366,10 @@ function updateEdges()
 }
 
 $(document).ready(function() {
-  
-  var width = $(document).width()*.75;
-  var height = $(document).height()*.75;
   g.edgeFactory.template.style.directed = true;
   
   document.getElementById('vp1').value = vp1;
   document.getElementById('vp2').value = vp2;
-  
-  
   
   // initialize graph
   g.addEdge(e1,vp1+' (VP1)',{label:'?'});
@@ -385,9 +380,7 @@ $(document).ready(function() {
   
   layouter = new Graph.Layout.Static(g,[[e1,0,1],[e2,2,1],[vp1+' (VP1)',1,0],[vp2+' (VP2)',1,2]]);
   
-  renderer = new Graph.Renderer.Raphael('canvas', g, width, height);
-  
-  function update()
+  function updateGraph()
   {
     g = new Graph();
     g.edgeFactory.template.style.directed = true;
@@ -395,46 +388,52 @@ $(document).ready(function() {
     vp2 = document.getElementById('vp2').value;
     updateEdges();
     
-    renderer = new Graph.Renderer.Raphael('canvas', g, width, height);
+    $("div#canvas").empty();
+    renderer = new Graph.Renderer.Raphael('canvas', g, $(window).width() - 50, $(window).height() - 150);
     
   };
+
+  $(window).resize(function() {
+      updateGraph();
+  });
   
   $('#e1').keyup(function(e) {
     if(e.keyCode == 13)
     {
-      update();
+      updateGraph();
     }
   });
   
   $('#e2').keyup(function(e) {
     if(e.keyCode == 13)
     {
-      update();
+      updateGraph();
     }
   });
   
   $('#vp1').keyup(function(e) {
     if(e.keyCode == 13)
     {
-      update();
+      updateGraph();
     }
   });
   
   $('#vp2').keyup(function(e) {
     if(e.keyCode == 13)
     {
-      update();
+      updateGraph();
     }
   });
   
   $('#numOutputVPs').keyup(function(e) {
     if(e.keyCode == 13)
     {
-      update();
+      updateGraph();
     }
   });
   
   $('#process-button').click(function(event) {
-    update();
+    updateGraph();
   });
+  updateGraph();
 });
